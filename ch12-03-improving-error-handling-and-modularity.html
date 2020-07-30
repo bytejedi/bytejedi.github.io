@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en-US">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>重构改进模块性和错误处理</title>
+    <meta name="generator" content="VuePress 1.5.2">
+    
+    <meta name="description" content="">
+    <link rel="preload" href="/assets/css/0.styles.98136e72.css" as="style"><link rel="preload" href="/assets/js/app.2449239c.js" as="script"><link rel="preload" href="/assets/js/2.08f6493c.js" as="script"><link rel="preload" href="/assets/js/65.6c47b863.js" as="script"><link rel="prefetch" href="/assets/js/10.49a5ba1b.js"><link rel="prefetch" href="/assets/js/100.9b8f680b.js"><link rel="prefetch" href="/assets/js/101.e81296a7.js"><link rel="prefetch" href="/assets/js/102.a9e963b6.js"><link rel="prefetch" href="/assets/js/103.73e0ce4c.js"><link rel="prefetch" href="/assets/js/104.716b201d.js"><link rel="prefetch" href="/assets/js/105.990676a5.js"><link rel="prefetch" href="/assets/js/106.395be4dc.js"><link rel="prefetch" href="/assets/js/107.2cf7f234.js"><link rel="prefetch" href="/assets/js/108.b1e7a80f.js"><link rel="prefetch" href="/assets/js/109.dc83dd2b.js"><link rel="prefetch" href="/assets/js/11.21f9b057.js"><link rel="prefetch" href="/assets/js/110.63cd5d6c.js"><link rel="prefetch" href="/assets/js/111.5f0d88bc.js"><link rel="prefetch" href="/assets/js/112.ea31fcf8.js"><link rel="prefetch" href="/assets/js/113.2613aa03.js"><link rel="prefetch" href="/assets/js/12.740be4eb.js"><link rel="prefetch" href="/assets/js/13.67e0762e.js"><link rel="prefetch" href="/assets/js/14.312c0582.js"><link rel="prefetch" href="/assets/js/15.f26993e4.js"><link rel="prefetch" href="/assets/js/16.0eddc30d.js"><link rel="prefetch" href="/assets/js/17.36cdf975.js"><link rel="prefetch" href="/assets/js/18.06822f97.js"><link rel="prefetch" href="/assets/js/19.8e10f38a.js"><link rel="prefetch" href="/assets/js/20.edc94793.js"><link rel="prefetch" href="/assets/js/21.a59eb165.js"><link rel="prefetch" href="/assets/js/22.d8d27be8.js"><link rel="prefetch" href="/assets/js/23.b0fc9822.js"><link rel="prefetch" href="/assets/js/24.dcb316c2.js"><link rel="prefetch" href="/assets/js/25.3845b8c1.js"><link rel="prefetch" href="/assets/js/26.bb4bdf58.js"><link rel="prefetch" href="/assets/js/27.46988703.js"><link rel="prefetch" href="/assets/js/28.f06569b7.js"><link rel="prefetch" href="/assets/js/29.e5a404ae.js"><link rel="prefetch" href="/assets/js/3.c6117045.js"><link rel="prefetch" href="/assets/js/30.5edf8c72.js"><link rel="prefetch" href="/assets/js/31.64fa13d5.js"><link rel="prefetch" href="/assets/js/32.1ab67a7e.js"><link rel="prefetch" href="/assets/js/33.6f195c16.js"><link rel="prefetch" href="/assets/js/34.71e3b579.js"><link rel="prefetch" href="/assets/js/35.371e511c.js"><link rel="prefetch" href="/assets/js/36.08fc7c68.js"><link rel="prefetch" href="/assets/js/37.258dd3b9.js"><link rel="prefetch" href="/assets/js/38.984a44ad.js"><link rel="prefetch" href="/assets/js/39.8a3ead3b.js"><link rel="prefetch" href="/assets/js/4.14d70a70.js"><link rel="prefetch" href="/assets/js/40.ac46fde9.js"><link rel="prefetch" href="/assets/js/41.254fff77.js"><link rel="prefetch" href="/assets/js/42.8ca25b75.js"><link rel="prefetch" href="/assets/js/43.1cdd6234.js"><link rel="prefetch" href="/assets/js/44.445709a2.js"><link rel="prefetch" href="/assets/js/45.945d9183.js"><link rel="prefetch" href="/assets/js/46.7d82822b.js"><link rel="prefetch" href="/assets/js/47.e76955b7.js"><link rel="prefetch" href="/assets/js/48.52ad4d62.js"><link rel="prefetch" href="/assets/js/49.16177e6e.js"><link rel="prefetch" href="/assets/js/5.0cf76c8a.js"><link rel="prefetch" href="/assets/js/50.2d77dc15.js"><link rel="prefetch" href="/assets/js/51.45307d32.js"><link rel="prefetch" href="/assets/js/52.9deffc11.js"><link rel="prefetch" href="/assets/js/53.b4b8aabc.js"><link rel="prefetch" href="/assets/js/54.79b9015a.js"><link rel="prefetch" href="/assets/js/55.11079ce5.js"><link rel="prefetch" href="/assets/js/56.8ecf720f.js"><link rel="prefetch" href="/assets/js/57.5c60b42f.js"><link rel="prefetch" href="/assets/js/58.276bab98.js"><link rel="prefetch" href="/assets/js/59.09bb1554.js"><link rel="prefetch" href="/assets/js/6.f2d235a9.js"><link rel="prefetch" href="/assets/js/60.7bd2124b.js"><link rel="prefetch" href="/assets/js/61.a188bf05.js"><link rel="prefetch" href="/assets/js/62.9223a048.js"><link rel="prefetch" href="/assets/js/63.1524471a.js"><link rel="prefetch" href="/assets/js/64.2c6b9784.js"><link rel="prefetch" href="/assets/js/66.91792088.js"><link rel="prefetch" href="/assets/js/67.87c9d215.js"><link rel="prefetch" href="/assets/js/68.3e843dfe.js"><link rel="prefetch" href="/assets/js/69.4f409af2.js"><link rel="prefetch" href="/assets/js/7.643908d3.js"><link rel="prefetch" href="/assets/js/70.750a9b78.js"><link rel="prefetch" href="/assets/js/71.f7b9ce48.js"><link rel="prefetch" href="/assets/js/72.212c6054.js"><link rel="prefetch" href="/assets/js/73.b306a722.js"><link rel="prefetch" href="/assets/js/74.30448dbe.js"><link rel="prefetch" href="/assets/js/75.b2e1e7af.js"><link rel="prefetch" href="/assets/js/76.06e59668.js"><link rel="prefetch" href="/assets/js/77.bf1b913b.js"><link rel="prefetch" href="/assets/js/78.8b8cac34.js"><link rel="prefetch" href="/assets/js/79.65492383.js"><link rel="prefetch" href="/assets/js/8.4c8bbc1f.js"><link rel="prefetch" href="/assets/js/80.9ed9cf0b.js"><link rel="prefetch" href="/assets/js/81.7f9b040b.js"><link rel="prefetch" href="/assets/js/82.a193a1fa.js"><link rel="prefetch" href="/assets/js/83.512b6274.js"><link rel="prefetch" href="/assets/js/84.b5b700cb.js"><link rel="prefetch" href="/assets/js/85.d23a635b.js"><link rel="prefetch" href="/assets/js/86.42cb4f8a.js"><link rel="prefetch" href="/assets/js/87.5fd9eb29.js"><link rel="prefetch" href="/assets/js/88.224fda7d.js"><link rel="prefetch" href="/assets/js/89.fa383f0a.js"><link rel="prefetch" href="/assets/js/9.4e1ee98b.js"><link rel="prefetch" href="/assets/js/90.a04f3ad6.js"><link rel="prefetch" href="/assets/js/91.9fa55291.js"><link rel="prefetch" href="/assets/js/92.677d3329.js"><link rel="prefetch" href="/assets/js/93.1ee99dfc.js"><link rel="prefetch" href="/assets/js/94.bc29293b.js"><link rel="prefetch" href="/assets/js/95.f483fa3e.js"><link rel="prefetch" href="/assets/js/96.2188befb.js"><link rel="prefetch" href="/assets/js/97.3c67cd84.js"><link rel="prefetch" href="/assets/js/98.ba405f05.js"><link rel="prefetch" href="/assets/js/99.08460e27.js">
+    <link rel="stylesheet" href="/assets/css/0.styles.98136e72.css">
+  </head>
+  <body>
+    <div id="app" data-server-rendered="true"><div class="theme-container"><header class="navbar"><div class="sidebar-button"><svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" role="img" viewBox="0 0 448 512" class="icon"><path fill="currentColor" d="M436 124H12c-6.627 0-12-5.373-12-12V80c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12zm0 160H12c-6.627 0-12-5.373-12-12v-32c0-6.627 5.373-12 12-12h424c6.627 0 12 5.373 12 12v32c0 6.627-5.373 12-12 12z"></path></svg></div> <a href="/" class="home-link router-link-active"></a> <div class="links"><div class="search-box"><input aria-label="Search" autocomplete="off" spellcheck="false" value=""> <!----></div> <nav class="nav-links can-hide"><div class="nav-item"><a href="/" class="nav-link">
+  回首页
+</a></div> <!----></nav></div></header> <div class="sidebar-mask"></div> <aside class="sidebar"><nav class="nav-links"><div class="nav-item"><a href="/" class="nav-link">
+  回首页
+</a></div> <!----></nav>  <ul class="sidebar-links"><li><section class="sidebar-group depth-0"><p class="sidebar-heading open"><span>重构改进模块性和错误处理</span> <!----></p> <ul class="sidebar-links sidebar-group-items"><li><a href="/ch12-03-improving-error-handling-and-modularity.html#重构改进模块性和错误处理" class="sidebar-link">重构改进模块性和错误处理</a><ul class="sidebar-sub-headers"><li class="sidebar-sub-header"><a href="/ch12-03-improving-error-handling-and-modularity.html#二进制项目的关注分离" class="sidebar-link">二进制项目的关注分离</a></li><li class="sidebar-sub-header"><a href="/ch12-03-improving-error-handling-and-modularity.html#提取参数解析器" class="sidebar-link">提取参数解析器</a></li><li class="sidebar-sub-header"><a href="/ch12-03-improving-error-handling-and-modularity.html#组合配置值" class="sidebar-link">组合配置值</a></li><li class="sidebar-sub-header"><a href="/ch12-03-improving-error-handling-and-modularity.html#创建一个-config-的构造函数" class="sidebar-link">创建一个 Config 的构造函数</a></li><li class="sidebar-sub-header"><a href="/ch12-03-improving-error-handling-and-modularity.html#修复错误处理" class="sidebar-link">修复错误处理</a></li><li class="sidebar-sub-header"><a href="/ch12-03-improving-error-handling-and-modularity.html#从-main-提取逻辑" class="sidebar-link">从 main 提取逻辑</a></li><li class="sidebar-sub-header"><a href="/ch12-03-improving-error-handling-and-modularity.html#将代码拆分到库-crate" class="sidebar-link">将代码拆分到库 crate</a></li></ul></li></ul></section></li></ul> </aside> <main class="page"> <div class="theme-default-content content__default"><h2 id="重构改进模块性和错误处理"><a href="#重构改进模块性和错误处理" class="header-anchor">#</a> 重构改进模块性和错误处理</h2> <blockquote><p><a href="https://github.com/rust-lang/book/blob/master/src/ch12-03-improving-error-handling-and-modularity.md" target="_blank" rel="noopener noreferrer">ch12-03-improving-error-handling-and-modularity.md<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a> <br>
+commit 426f3e4ec17e539ae9905ba559411169d303a031</p></blockquote> <p>为了改善我们的程序这里有四个问题需要修复，而且他们都与程序的组织方式和如何处理潜在错误有关。</p> <p>第一，<code>main</code> 现在进行了两个任务：它解析了参数并打开了文件。对于一个这样的小函数，这并不是一个大问题。然而如果 <code>main</code> 中的功能持续增加，<code>main</code> 函数处理的独立任务也会增加。当函数承担了更多责任，它就更难以推导，更难以测试，并且更难以在不破坏其他部分的情况下做出修改。最好能分离出功能以便每个函数就负责一个任务。</p> <p>这同时也关系到第二个问题：<code>search</code> 和 <code>filename</code> 是程序中的配置变量，而像 <code>contents</code> 则用来执行程序逻辑。随着 <code>main</code> 函数的增长，就需要引入更多的变量到作用域中，而当作用域中有更多的变量时，将更难以追踪每个变量的目的。最好能将配置变量组织进一个结构，这样就能使他们的目的更明确了。</p> <p>第三个问题是如果打开文件失败我们使用 <code>expect</code> 来打印出错误信息，不过这个错误信息只是说 <code>Something went wrong reading the file</code>。读取文件失败的原因有多种：例如文件不存在，或者没有打开此文件的权限。目前，无论处于何种情况，我们只是打印出“文件读取出现错误”的信息，这并没有给予使用者具体的信息！</p> <p>第四，我们不停地使用 <code>expect</code> 来处理不同的错误，如果用户没有指定足够的参数来运行程序，他们会从 Rust 得到 <code>index out of bounds</code> 错误，而这并不能明确地解释问题。如果所有的错误处理都位于一处，这样将来的维护者在需要修改错误处理逻辑时就只需要考虑这一处代码。将所有的错误处理都放在一处也有助于确保我们打印的错误信息对终端用户来说是有意义的。</p> <p>让我们通过重构项目来解决这些问题。</p> <h3 id="二进制项目的关注分离"><a href="#二进制项目的关注分离" class="header-anchor">#</a> 二进制项目的关注分离</h3> <p><code>main</code> 函数负责多个任务的组织问题在许多二进制项目中很常见。所以 Rust 社区开发出一类在 <code>main</code> 函数开始变得庞大时进行二进制程序的关注分离的指导性过程。这些过程有如下步骤：</p> <ul><li>将程序拆分成 <em>main.rs</em> 和 <em>lib.rs</em> 并将程序的逻辑放入 <em>lib.rs</em> 中。</li> <li>当命令行解析逻辑比较小时，可以保留在 <em>main.rs</em> 中。</li> <li>当命令行解析开始变得复杂时，也同样将其从 <em>main.rs</em> 提取到 <em>lib.rs</em> 中。</li></ul> <p>经过这些过程之后保留在 <code>main</code> 函数中的责任应该被限制为：</p> <ul><li>使用参数值调用命令行解析逻辑</li> <li>设置任何其他的配置</li> <li>调用 <em>lib.rs</em> 中的 <code>run</code> 函数</li> <li>如果 <code>run</code> 返回错误，则处理这个错误</li></ul> <p>这个模式的一切就是为了关注分离：<em>main.rs</em> 处理程序运行，而 <em>lib.rs</em> 处理所有的真正的任务逻辑。因为不能直接测试 <code>main</code> 函数，这个结构通过将所有的程序逻辑移动到 <em>lib.rs</em> 的函数中使得我们可以测试他们。仅仅保留在 <em>main.rs</em> 中的代码将足够小以便阅读就可以验证其正确性。让我们遵循这些步骤来重构程序。</p> <h3 id="提取参数解析器"><a href="#提取参数解析器" class="header-anchor">#</a> 提取参数解析器</h3> <p>首先，我们将解析参数的功能提取到一个 <code>main</code> 将会调用的函数中，为将命令行解析逻辑移动到 <em>src/lib.rs</em> 中做准备。示例 12-5 中展示了新 <code>main</code> 函数的开头，它调用了新函数 <code>parse_config</code>。目前它仍将定义在 <em>src/main.rs</em> 中：</p> <p><span class="filename">文件名: src/main.rs</span></p> <div class="language-rust,ignore extra-class"><pre class="language-text"><code>fn main() {
+    let args: Vec&lt;String&gt; = env::args().collect();
+
+    let (query, filename) = parse_config(&amp;args);
+
+    // --snip--
+}
+
+fn parse_config(args: &amp;[String]) -&gt; (&amp;str, &amp;str) {
+    let query = &amp;args[1];
+    let filename = &amp;args[2];
+
+    (query, filename)
+}
+</code></pre></div><p><span class="caption">示例 12-5：从 <code>main</code> 中提取出 <code>parse_config</code> 函数</span></p> <p>我们仍然将命令行参数收集进一个 vector，不过不同于在 <code>main</code> 函数中将索引 1 的参数值赋值给变量 <code>query</code> 和将索引 2 的值赋值给变量 <code>filename</code>，我们将整个 vector 传递给 <code>parse_config</code> 函数。接着 <code>parse_config</code> 函数将包含决定哪个参数该放入哪个变量的逻辑，并将这些值返回到 <code>main</code>。仍然在 <code>main</code> 中创建变量 <code>query</code> 和 <code>filename</code>，不过 <code>main</code> 不再负责处理命令行参数与变量如何对应。</p> <p>这对重构我们这小程序可能有点大材小用，不过我们将采用小的、增量的步骤进行重构。在做出这些改变之后，再次运行程序并验证参数解析是否仍然正常。经常验证你的进展是一个好习惯，这样在遇到问题时能帮助你定位问题的成因。</p> <h3 id="组合配置值"><a href="#组合配置值" class="header-anchor">#</a> 组合配置值</h3> <p>我们可以采取另一个小的步骤来进一步改善这个函数。现在函数返回一个元组，不过立刻又将元组拆成了独立的部分。这是一个我们可能没有进行正确抽象的信号。</p> <p>另一个表明还有改进空间的迹象是 <code>parse_config</code> 名称的 <code>config</code> 部分，它暗示了我们返回的两个值是相关的并都是一个配置值的一部分。目前除了将这两个值组合进元组之外并没有表达这个数据结构的意义：我们可以将这两个值放入一个结构体并给每个字段一个有意义的名字。这会让未来的维护者更容易理解不同的值如何相互关联以及他们的目的。</p> <blockquote><p>注意：一些同学将这种在复杂类型更为合适的场景下使用基本类型的反模式称为 <strong>基本类型偏执</strong>（<em>primitive obsession</em>）。</p></blockquote> <p>示例 12-6 展示了 <code>parse_config</code> 函数的改进。</p> <p><span class="filename">文件名: src/main.rs</span></p> <div class="language-rust,should_panic extra-class"><pre class="language-text"><code># use std::env;
+# use std::fs;
+#
+fn main() {
+    let args: Vec&lt;String&gt; = env::args().collect();
+
+    let config = parse_config(&amp;args);
+
+    println!(&quot;Searching for {}&quot;, config.query);
+    println!(&quot;In file {}&quot;, config.filename);
+
+    let contents = fs::read_to_string(config.filename)
+        .expect(&quot;Something went wrong reading the file&quot;);
+
+    // --snip--
+}
+
+struct Config {
+    query: String,
+    filename: String,
+}
+
+fn parse_config(args: &amp;[String]) -&gt; Config {
+    let query = args[1].clone();
+    let filename = args[2].clone();
+
+    Config { query, filename }
+}
+</code></pre></div><p><span class="caption">示例 12-6：重构 <code>parse_config</code> 返回一个 <code>Config</code> 结构体实例</span></p> <p>新定义的结构体 <code>Config</code> 中包含字段 <code>query</code> 和 <code>filename</code>。
+<code>parse_config</code> 的签名表明它现在返回一个 <code>Config</code> 值。在之前的 <code>parse_config</code> 函数体中，我们返回了引用 <code>args</code> 中 <code>String</code> 值的字符串 slice，现在我们定义 <code>Config</code> 来包含拥有所有权的 <code>String</code> 值。<code>main</code> 中的 <code>args</code> 变量是参数值的所有者并只允许 <code>parse_config</code> 函数借用他们，这意味着如果 <code>Config</code> 尝试获取 <code>args</code> 中值的所有权将违反 Rust 的借用规则。</p> <p>还有许多不同的方式可以处理 <code>String</code> 的数据，而最简单但有些不太高效的方式是调用这些值的 <code>clone</code> 方法。这会生成 <code>Config</code> 实例可以拥有的数据的完整拷贝，不过会比储存字符串数据的引用消耗更多的时间和内存。不过拷贝数据使得代码显得更加直白因为无需管理引用的生命周期，所以在这种情况下牺牲一小部分性能来换取简洁性的取舍是值得的。</p> <blockquote><h4 id="使用-clone-的权衡取舍"><a href="#使用-clone-的权衡取舍" class="header-anchor">#</a> 使用 <code>clone</code> 的权衡取舍</h4> <p>由于其运行时消耗，许多 Rustacean 之间有一个趋势是倾向于避免使用 <code>clone</code> 来解决所有权问题。在关于迭代器的第十三章中，我们将会学习如何更有效率的处理这种情况，不过现在，复制一些字符串来取得进展是没有问题的，因为只会进行一次这样的拷贝，而且文件名和要搜索的字符串都比较短。在第一轮编写时拥有一个可以工作但有点低效的程序要比尝试过度优化代码更好一些。随着你对 Rust 更加熟练，将能更轻松的直奔合适的方法，不过现在调用 <code>clone</code> 是完全可以接受的。</p></blockquote> <p>我们更新 <code>main</code> 将 <code>parse_config</code> 返回的 <code>Config</code> 实例放入变量 <code>config</code> 中，并将之前分别使用 <code>search</code> 和 <code>filename</code> 变量的代码更新为现在的使用 <code>Config</code> 结构体的字段的代码。</p> <p>现在代码更明确的表现了我们的意图，<code>query</code> 和 <code>filename</code> 是相关联的并且他们的目的是配置程序如何工作。任何使用这些值的代码就知道在 <code>config</code> 实例中对应目的的字段名中寻找他们。</p> <h3 id="创建一个-config-的构造函数"><a href="#创建一个-config-的构造函数" class="header-anchor">#</a> 创建一个 <code>Config</code> 的构造函数</h3> <p>目前为止，我们将负责解析命令行参数的逻辑从 <code>main</code> 提取到了 <code>parse_config</code> 函数中，这有助于我们看清值 <code>query</code> 和 <code>filename</code> 是相互关联的并应该在代码中表现这种关系。接着我们增加了 <code>Config</code> 结构体来描述 <code>query</code> 和 <code>filename</code> 的相关性，并能够从 <code>parse_config</code> 函数中将这些值的名称作为结构体字段名称返回。</p> <p>所以现在 <code>parse_config</code> 函数的目的是创建一个 <code>Config</code> 实例，我们可以将 <code>parse_config</code> 从一个普通函数变为一个叫做 <code>new</code> 的与结构体关联的函数。做出这个改变使得代码更符合习惯：可以像标准库中的 <code>String</code> 调用 <code>String::new</code> 来创建一个该类型的实例那样，将 <code>parse_config</code> 变为一个与 <code>Config</code> 关联的 <code>new</code> 函数。示例 12-7 展示了需要做出的修改：</p> <p><span class="filename">文件名: src/main.rs</span></p> <div class="language-rust,should_panic extra-class"><pre class="language-text"><code># use std::env;
+#
+fn main() {
+    let args: Vec&lt;String&gt; = env::args().collect();
+
+    let config = Config::new(&amp;args);
+
+    // --snip--
+}
+
+# struct Config {
+#     query: String,
+#     filename: String,
+# }
+#
+// --snip--
+
+impl Config {
+    fn new(args: &amp;[String]) -&gt; Config {
+        let query = args[1].clone();
+        let filename = args[2].clone();
+
+        Config { query, filename }
+    }
+}
+</code></pre></div><p><span class="caption">示例 12-7：将 <code>parse_config</code> 变为 <code>Config::new</code></span></p> <p>这里将 <code>main</code> 中调用 <code>parse_config</code> 的地方更新为调用 <code>Config::new</code>。我们将 <code>parse_config</code> 的名字改为 <code>new</code> 并将其移动到 <code>impl</code> 块中，这使得 <code>new</code> 函数与 <code>Config</code> 相关联。再次尝试编译并确保它可以工作。</p> <h3 id="修复错误处理"><a href="#修复错误处理" class="header-anchor">#</a> 修复错误处理</h3> <p>现在我们开始修复错误处理。回忆一下之前提到过如果 <code>args</code> vector 包含少于 3 个项并尝试访问 vector 中索引 <code>1</code> 或索引 <code>2</code> 的值会造成程序 panic。尝试不带任何参数运行程序；这将看起来像这样：</p> <div class="language-text extra-class"><pre class="language-text"><code>$ cargo run
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+     Running `target/debug/minigrep`
+thread 'main' panicked at 'index out of bounds: the len is 1
+but the index is 1', src/main.rs:25:21
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+</code></pre></div><p><code>index out of bounds: the len is 1 but the index is 1</code> 是一个针对程序员的错误信息，然而这并不能真正帮助终端用户理解发生了什么和他们应该做什么。现在就让我们修复它吧。</p> <h4 id="改善错误信息"><a href="#改善错误信息" class="header-anchor">#</a> 改善错误信息</h4> <p>在示例 12-8 中，在 <code>new</code> 函数中增加了一个检查在访问索引 <code>1</code> 和 <code>2</code> 之前检查 slice 是否足够长。如果 slice 不够长，我们使用一个更好的错误信息 panic 而不是 <code>index out of bounds</code> 信息：</p> <p><span class="filename">文件名: src/main.rs</span></p> <div class="language-rust,ignore extra-class"><pre class="language-text"><code>// --snip--
+fn new(args: &amp;[String]) -&gt; Config {
+    if args.len() &lt; 3 {
+        panic!(&quot;not enough arguments&quot;);
+    }
+    // --snip--
+</code></pre></div><p><span class="caption">示例 12-8：增加一个参数数量检查</span></p> <p>这类似于 <a href="/ch09-03-to-panic-or-not-to-panic.html#creating-custom-types-for-validation">示例 9-10 中的 <code>Guess::new</code> 函数</a>，那里如果 <code>value</code> 参数超出了有效值的范围就调用 <code>panic!</code>。不同于检查值的范围，这里检查 <code>args</code> 的长度至少是 <code>3</code>，而函数的剩余部分则可以在假设这个条件成立的基础上运行。如果 <code>args</code> 少于 3 个项，则这个条件将为真，并调用 <code>panic!</code> 立即终止程序。</p> <p>有了 <code>new</code> 中这几行额外的代码，再次不带任何参数运行程序并看看现在错误看起来像什么：</p> <div class="language-text extra-class"><pre class="language-text"><code>$ cargo run
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.0 secs
+     Running `target/debug/minigrep`
+thread 'main' panicked at 'not enough arguments', src/main.rs:26:13
+note: Run with `RUST_BACKTRACE=1` for a backtrace.
+</code></pre></div><p>这个输出就好多了，现在有了一个合理的错误信息。然而，还是有一堆额外的信息我们不希望提供给用户。所以在这里使用示例 9-9 中的技术可能不是最好的；正如 <a href="/ch09-03-to-panic-or-not-to-panic.html#guidelines-for-error-handling">第九章</a> 所讲到的一样，<code>panic!</code> 的调用更趋向于程序上的问题而不是使用上的问题。相反我们可以使用第九章学习的另一个技术 —— 返回一个可以表明成功或错误的 <a href="/ch09-02-recoverable-errors-with-result.html"><code>Result</code></a>。</p> <h4 id="从-new-中返回-result-而不是调用-panic"><a href="#从-new-中返回-result-而不是调用-panic" class="header-anchor">#</a> 从 <code>new</code> 中返回 <code>Result</code> 而不是调用 <code>panic!</code></h4> <p>我们可以选择返回一个 <code>Result</code> 值，它在成功时会包含一个 <code>Config</code> 的实例，而在错误时会描述问题。当 <code>Config::new</code> 与 <code>main</code> 交流时，可以使用 <code>Result</code> 类型来表明这里存在问题。接着修改 <code>main</code> 将 <code>Err</code> 成员转换为对用户更友好的错误，而不是 <code>panic!</code> 调用产生的关于 <code>thread 'main'</code> 和 <code>RUST_BACKTRACE</code> 的文本。</p> <p>示例 12-9 展示了为了返回 <code>Result</code> 在 <code>Config::new</code> 的返回值和函数体中所需的改变。注意这还不能编译，直到下一个示例同时也更新了 <code>main</code> 之后。</p> <p><span class="filename">文件名: src/main.rs</span></p> <div class="language-rust,ignore extra-class"><pre class="language-text"><code>impl Config {
+    fn new(args: &amp;[String]) -&gt; Result&lt;Config, &amp;'static str&gt; {
+        if args.len() &lt; 3 {
+            return Err(&quot;not enough arguments&quot;);
+        }
+
+        let query = args[1].clone();
+        let filename = args[2].clone();
+
+        Ok(Config { query, filename })
+    }
+}
+</code></pre></div><p><span class="caption">示例 12-9：从 <code>Config::new</code> 中返回 <code>Result</code></span></p> <p>现在 <code>new</code> 函数返回一个 <code>Result</code>，在成功时带有一个 <code>Config</code> 实例而在出现错误时带有一个 <code>&amp;'static str</code>。回忆一下第十章 “静态生命周期” 中讲到 <code>&amp;'static str</code> 是字符串字面值的类型，也是目前的错误信息。</p> <p><code>new</code> 函数体中有两处修改：当没有足够参数时不再调用 <code>panic!</code>，而是返回 <code>Err</code> 值。同时我们将 <code>Config</code> 返回值包装进 <code>Ok</code> 成员中。这些修改使得函数符合其新的类型签名。</p> <p>通过让 <code>Config::new</code> 返回一个 <code>Err</code> 值，这就允许 <code>main</code> 函数处理 <code>new</code> 函数返回的 <code>Result</code> 值并在出现错误的情况更明确的结束进程。</p> <h4 id="config-new-调用并处理错误"><a href="#config-new-调用并处理错误" class="header-anchor">#</a> <code>Config::new</code> 调用并处理错误</h4> <p>为了处理错误情况并打印一个对用户友好的信息，我们需要像示例 12-10 那样更新 <code>main</code> 函数来处理现在 <code>Config::new</code> 返回的 <code>Result</code>。另外还需要手动实现原先由 <code>panic!</code>负责的工作，即以非零错误码退出命令行工具的工作。非零的退出状态是一个惯例信号，用来告诉调用程序的进程：该程序以错误状态退出了。</p> <p><span class="filename">文件名: src/main.rs</span></p> <div class="language-rust,ignore extra-class"><pre class="language-text"><code>use std::process;
+
+fn main() {
+    let args: Vec&lt;String&gt; = env::args().collect();
+
+    let config = Config::new(&amp;args).unwrap_or_else(|err| {
+        println!(&quot;Problem parsing arguments: {}&quot;, err);
+        process::exit(1);
+    });
+
+    // --snip--
+</code></pre></div><p><span class="caption">示例 12-10：如果新建 <code>Config</code> 失败则使用错误码退出</span></p> <p>在上面的示例中，使用了一个之前没有涉及到的方法：<code>unwrap_or_else</code>，它定义于标准库的 <code>Result&lt;T, E&gt;</code> 上。使用 <code>unwrap_or_else</code> 可以进行一些自定义的非 <code>panic!</code> 的错误处理。当 <code>Result</code> 是 <code>Ok</code> 时，这个方法的行为类似于 <code>unwrap</code>：它返回 <code>Ok</code> 内部封装的值。然而，当其值是 <code>Err</code> 时，该方法会调用一个 <strong>闭包</strong>（<em>closure</em>），也就是一个我们定义的作为参数传递给 <code>unwrap_or_else</code> 的匿名函数。<a href="/ch13-00-functional-features.html">第十三章</a> 会更详细的介绍闭包。现在你需要理解的是 <code>unwrap_or_else</code> 会将 <code>Err</code> 的内部值，也就是示例 12-9 中增加的 <code>not enough arguments</code> 静态字符串的情况，传递给闭包中位于两道竖线间的参数 <code>err</code>。闭包中的代码在其运行时可以使用这个 <code>err</code> 值。</p> <p>我们新增了一个 <code>use</code> 行来从标准库中导入 <code>process</code>。在错误的情况闭包中将被运行的代码只有两行：我们打印出了 <code>err</code> 值，接着调用了 <code>std::process::exit</code>。<code>process::exit</code> 会立即停止程序并将传递给它的数字作为退出状态码。这类似于示例 12-8 中使用的基于 <code>panic!</code> 的错误处理，除了不会再得到所有的额外输出了。让我们试试：</p> <div class="language-text extra-class"><pre class="language-text"><code>$ cargo run
+   Compiling minigrep v0.1.0 (file:///projects/minigrep)
+    Finished dev [unoptimized + debuginfo] target(s) in 0.48 secs
+     Running `target/debug/minigrep`
+Problem parsing arguments: not enough arguments
+</code></pre></div><p>非常好！现在输出对于用户来说就友好多了。</p> <h3 id="从-main-提取逻辑"><a href="#从-main-提取逻辑" class="header-anchor">#</a> 从 <code>main</code> 提取逻辑</h3> <p>现在我们完成了配置解析的重构：让我们转向程序的逻辑。正如 <a href="#separation-of-concerns-for-binary-projects">“二进制项目的关注分离”</a> 部分所展开的讨论，我们将提取一个叫做 <code>run</code> 的函数来存放目前 <code>main</code>函数中不属于设置配置或处理错误的所有逻辑。一旦完成这些，<code>main</code> 函数将简明得足以通过观察来验证，而我们将能够为所有其他逻辑编写测试。</p> <p>示例 12-11 展示了提取出来的 <code>run</code> 函数。目前我们只进行小的增量式的提取函数的改进。我们仍将在 <em>src/main.rs</em> 中定义这个函数：</p> <p><span class="filename">文件名: src/main.rs</span></p> <div class="language-rust,ignore extra-class"><pre class="language-text"><code>fn main() {
+    // --snip--
+
+    println!(&quot;Searching for {}&quot;, config.query);
+    println!(&quot;In file {}&quot;, config.filename);
+
+    run(config);
+}
+
+fn run(config: Config) {
+    let contents = fs::read_to_string(config.filename)
+        .expect(&quot;Something went wrong reading the file&quot;);
+
+    println!(&quot;With text:\n{}&quot;, contents);
+}
+
+// --snip--
+</code></pre></div><p><span class="caption">示例 12-11：提取 <code>run</code> 函数来包含剩余的程序逻辑</span></p> <p>现在 <code>run</code> 函数包含了 <code>main</code> 中从读取文件开始的剩余的所有逻辑。<code>run</code> 函数获取一个 <code>Config</code> 实例作为参数。</p> <h4 id="从-run-函数中返回错误"><a href="#从-run-函数中返回错误" class="header-anchor">#</a> 从 <code>run</code> 函数中返回错误</h4> <p>通过将剩余的逻辑分离进 <code>run</code> 函数而不是留在 <code>main</code> 中，就可以像示例 12-9 中的 <code>Config::new</code> 那样改进错误处理。不再通过 <code>expect</code> 允许程序 panic，<code>run</code> 函数将会在出错时返回一个 <code>Result&lt;T, E&gt;</code>。这让我们进一步以一种对用户友好的方式统一 <code>main</code> 中的错误处理。示例 12-12 展示了 <code>run</code> 签名和函数体中的改变：</p> <p><span class="filename">文件名: src/main.rs</span></p> <div class="language-rust,ignore extra-class"><pre class="language-text"><code>use std::error::Error;
+
+// --snip--
+
+fn run(config: Config) -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+    let contents = fs::read_to_string(config.filename)?;
+
+    println!(&quot;With text:\n{}&quot;, contents);
+
+    Ok(())
+}
+</code></pre></div><p><span class="caption">示例 12-12：修改 <code>run</code> 函数返回 <code>Result</code></span></p> <p>这里我们做出了三个明显的修改。首先，将 <code>run</code> 函数的返回类型变为 <code>Result&lt;(), Box&lt;dyn Error&gt;&gt;</code>。之前这个函数返回 unit 类型 <code>()</code>，现在它仍然保持作为 <code>Ok</code> 时的返回值。</p> <p>对于错误类型，使用了 <strong>trait 对象</strong> <code>Box&lt;dyn Error&gt;</code>（在开头使用了 <code>use</code> 语句将 <code>std::error::Error</code> 引入作用域）。<a href="/ch17-00-oop.html">第十七章</a> 会涉及 trait 对象。目前只需知道 <code>Box&lt;dyn Error&gt;</code> 意味着函数会返回实现了 <code>Error</code> trait 的类型，不过无需指定具体将会返回的值的类型。这提供了在不同的错误场景可能有不同类型的错误返回值的灵活性。这也就是 <code>dyn</code>，它是 “动态的”（“dynamic”）的缩写。</p> <p>第二个改变是去掉了 <code>expect</code> 调用并替换为 <a href="/ch09-02-recoverable-errors-with-result.html#a-shortcut-for-propagating-errors-the--operator">第九章</a> 讲到的 <code>?</code>。不同于遇到错误就 <code>panic!</code>，<code>?</code> 会从函数中返回错误值并让调用者来处理它。</p> <p>第三个修改是现在成功时这个函数会返回一个 <code>Ok</code> 值。因为 <code>run</code> 函数签名中声明成功类型返回值是 <code>()</code>，这意味着需要将 unit 类型值包装进 <code>Ok</code> 值中。<code>Ok(())</code> 一开始看起来有点奇怪，不过这样使用 <code>()</code> 是惯用的做法，表明调用 <code>run</code> 函数只是为了它的副作用；函数并没有返回什么有意义的值。</p> <p>上述代码能够编译，不过会有一个警告：</p> <div class="language-text extra-class"><pre class="language-text"><code>warning: unused `std::result::Result` that must be used
+  --&gt; src/main.rs:17:5
+   |
+17 |     run(config);
+   |     ^^^^^^^^^^^^
+   |
+   = note: #[warn(unused_must_use)] on by default
+   = note: this `Result` may be an `Err` variant, which should be handled
+</code></pre></div><p>Rust 提示我们的代码忽略了 <code>Result</code> 值，它可能表明这里存在一个错误。但我们却没有检查这里是否有一个错误，而编译器提醒我们这里应该有一些错误处理代码！现在就让我们修正这个问题。</p> <h4 id="处理-main-中-run-返回的错误"><a href="#处理-main-中-run-返回的错误" class="header-anchor">#</a> 处理 <code>main</code> 中 <code>run</code> 返回的错误</h4> <p>我们将检查错误并使用类似示例 12-10 中 <code>Config::new</code> 处理错误的技术来处理他们，不过有一些细微的不同：</p> <p><span class="filename">文件名: src/main.rs</span></p> <div class="language-rust,ignore extra-class"><pre class="language-text"><code>fn main() {
+    // --snip--
+
+    println!(&quot;Searching for {}&quot;, config.query);
+    println!(&quot;In file {}&quot;, config.filename);
+
+    if let Err(e) = run(config) {
+        println!(&quot;Application error: {}&quot;, e);
+
+        process::exit(1);
+    }
+}
+</code></pre></div><p>我们使用 <code>if let</code> 来检查 <code>run</code> 是否返回一个 <code>Err</code> 值，不同于 <code>unwrap_or_else</code>，并在出错时调用 <code>process::exit(1)</code>。<code>run</code> 并不返回像 <code>Config::new</code> 返回的 <code>Config</code> 实例那样需要 <code>unwrap</code> 的值。因为 <code>run</code> 在成功时返回 <code>()</code>，而我们只关心检测错误，所以并不需要 <code>unwrap_or_else</code> 来返回未封装的值，因为它只会是 <code>()</code>。</p> <p>不过两个例子中 <code>if let</code> 和 <code>unwrap_or_else</code> 的函数体都一样：打印出错误并退出。</p> <h3 id="将代码拆分到库-crate"><a href="#将代码拆分到库-crate" class="header-anchor">#</a> 将代码拆分到库 crate</h3> <p>现在我们的 <code>minigrep</code> 项目看起来好多了！现在我们将要拆分 <em>src/main.rs</em> 并将一些代码放入 <em>src/lib.rs</em>，这样就能测试他们并拥有一个含有更少功能的 <code>main</code> 函数。</p> <p>让我们将所有不是 <code>main</code> 函数的代码从 <em>src/main.rs</em> 移动到新文件 <em>src/lib.rs</em> 中：</p> <ul><li><code>run</code> 函数定义</li> <li>相关的 <code>use</code> 语句</li> <li><code>Config</code> 的定义</li> <li><code>Config::new</code> 函数定义</li></ul> <p>现在 <em>src/lib.rs</em> 的内容应该看起来像示例 12-13（为了简洁省略了函数体）。注意直到下一个示例修改完 <em>src/main.rs</em> 之后，代码还不能编译：</p> <p><span class="filename">文件名: src/lib.rs</span></p> <div class="language-rust,ignore extra-class"><pre class="language-text"><code>use std::error::Error;
+use std::fs;
+
+pub struct Config {
+    pub query: String,
+    pub filename: String,
+}
+
+impl Config {
+    pub fn new(args: &amp;[String]) -&gt; Result&lt;Config, &amp;'static str&gt; {
+        // --snip--
+    }
+}
+
+pub fn run(config: Config) -&gt; Result&lt;(), Box&lt;dyn Error&gt;&gt; {
+    // --snip--
+}
+</code></pre></div><p><span class="caption">示例 12-13：将 <code>Config</code> 和 <code>run</code> 移动到 <em>src/lib.rs</em></span></p> <p>这里使用了公有的 <code>pub</code> 关键字：在 <code>Config</code>、其字段和其 <code>new</code> 方法，以及 <code>run</code> 函数上。现在我们有了一个拥有可以测试的公有 API 的库 crate 了。</p> <p>现在需要在 <em>src/main.rs</em> 中将移动到 <em>src/lib.rs</em> 的代码引入二进制 crate 的作用域中，如示例 12-14 所示：</p> <p><span class="filename">Filename: src/main.rs</span></p> <div class="language-rust,ignore extra-class"><pre class="language-text"><code>use std::env;
+use std::process;
+
+use minigrep::Config;
+
+fn main() {
+    // --snip--
+    if let Err(e) = minigrep::run(config) {
+        // --snip--
+    }
+}
+</code></pre></div><p><span class="caption">示例 12-14：将 <code>minigrep</code> crate 引入 <em>src/main.rs</em> 的作用域中</span></p> <p>我们添加了一行 <code>use minigrep::Config</code>，它将 <code>Config</code> 类型引入作用域，并使用 crate 名称作为 <code>run</code> 函数的前缀。通过这些重构，所有功能应该能够联系在一起并运行了。运行 <code>cargo run</code> 来确保一切都正确的衔接在一起。</p> <p>哇哦！我们做了大量的工作，不过我们为将来的成功打下了基础。现在处理错误将更容易，同时代码也更加模块化。从现在开始几乎所有的工作都将在 <em>src/lib.rs</em> 中进行。</p> <p>让我们利用这些新创建的模块的优势来进行一些在旧代码中难以展开的工作，这些工作在新代码中非常容易实现，那就是：编写测试！</p></div> <footer class="page-edit"><!----> <!----></footer> <!----> </main></div><div class="global-ui"></div></div>
+    <script src="/assets/js/app.2449239c.js" defer></script><script src="/assets/js/2.08f6493c.js" defer></script><script src="/assets/js/65.6c47b863.js" defer></script>
+  </body>
+</html>
